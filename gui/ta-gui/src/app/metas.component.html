@@ -6,11 +6,11 @@
    <th>Requisitos</th>
    <th>Gerência de Configuração</th>
 </tr>
-<tr *ngFor="let a of alunos">
-   <td>{{a.nome}}</td>
-   <td>{{a.cpf}}</td>
+<tr *ngFor="let a of alunos" name="studentsgrade">
+   <td name="nome">{{a.nome}}</td>
+   <td name="cpf">{{a.cpf}}</td>
    <td>{{a.email}}</td>
-   <td class="meta"><input [(ngModel)]="a.metas['requisitos']" (change)="atualizarAluno(a)"></td>
-   <td class="meta"><input [(ngModel)]="a.metas['gerDeConfiguracao']" (change)="atualizarAluno(a)"></td>
+   <td class="meta"><input name="requisitos" [(ngModel)]="a.metas['requisitos']" (change)="atualizarAluno(a)"></td>
+   <td class="meta"><input name="gerDeConfiguracao" [(ngModel)]="a.metas['gerDeConfiguracao']" (change)="atualizarAluno(a)"></td>
 </tr>
 </table>

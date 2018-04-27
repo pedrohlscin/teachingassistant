@@ -1,3 +1,4 @@
+
 import { defineSupportCode } from 'cucumber';
 import { browser, $, element, ElementArrayFinder, by } from 'protractor';
 let chai = require('chai').use(require('chai-as-promised'));
@@ -7,6 +8,7 @@ let sleep = (ms => new Promise(resolve => setTimeout(resolve, ms)));
 
 let sameCPF = ((elem, cpf) => elem.element(by.name('cpflist')).getText().then(text => text === cpf));
 let sameName = ((elem, name) => elem.element(by.name('nomelist')).getText().then(text => text === name));
+let pAND = ((p,q) => p.then(a => q.then(b => a && b))) 
 
 defineSupportCode(function ({ Given, When, Then }) {
     Given(/^I am at the students page$/, async () => {
