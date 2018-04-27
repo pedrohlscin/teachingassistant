@@ -14,13 +14,14 @@ export let config: Config = {
     frameworkPath: require.resolve('protractor-cucumber-framework'),
 
     specs: [
-        '../../features/*.feature'
+        // '../../features/alunos.feature',
+        '../../features/aluno_self_evaluate.feature'
     ],
 
     onPrepare: () => {
 
         browser.ignoreSynchronization = true;
-        browser.manage().window().maximize();
+        //browser.manage().window().maximize();
 
     },
     cucumberOpts: {
