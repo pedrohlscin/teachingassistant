@@ -1,28 +1,34 @@
-// Protractor configuration file, see link for more information
-// https://github.com/angular/protractor/blob/master/lib/config.ts
-
-const { SpecReporter } = require('jasmine-spec-reporter');
-
+/*
+Basic configuration to run your cucumber
+feature files and step definitions with protractor.
+**/
 exports.config = {
-  allScriptsTimeout: 11000,
-  specs: [
-    './e2e/**/*.e2e-spec.ts'
-  ],
-  capabilities: {
-    'browserName': 'chrome'
-  },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
-  framework: 'jasmine',
-  jasmineNodeOpts: {
-    showColors: true,
-    defaultTimeoutInterval: 30000,
-    print: function() {}
+  capabilities: {
+    browserName: 'chrome',
   },
-  onPrepare() {
+  framework: 'custom',  // set to "custom" instead of cucumber.
+  frameworkPath: require.resolve('protractor-cucumber-framework'),  // path relative to the current config file
+  specs: [
+    './e2e/features/**/*.feature'  // Specs here are the cucumber feature files
+  ],
+
+  // cucumber command line options
+  cucumberOpts: {
+    require: ['./e2e/step_definitions/**/*.e2e-spec.ts'],  // require step definition files before executing features
+    tags: [],                                              // <string[]> (expression) only execute the features or scenarios with tags matching the expression
+    strict: true,                                          // <boolean> fail if there are any undefined or pending steps
+    'dry-run': false,                                      // <boolean> invoke formatters without executing steps
+    compiler: ['ts:ts-node/register']                      // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
+
+  },
+
+  onPrepare: function () {
     require('ts-node').register({
-      project: 'e2e/tsconfig.e2e.json'
+      project: 'e2e/tsconfig.e2e.json',
     });
-    jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
-  }
+
+    browser.manage().window().maximize(); // maximize the browser before executing the feature files
+  },
 };

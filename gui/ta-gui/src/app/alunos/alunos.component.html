@@ -1,0 +1,45 @@
+<table>
+  <tr>
+    <td>
+      <label for="nomeInput">Nome</label>
+    </td>
+    <td>
+      <input id="nomeInput" [(ngModel)]="aluno.nome">
+    </td>
+    <td>
+      <button id="adicionarButton" (click)="criarAluno(aluno)">Adicionar</button>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label for="cpfInput">CPF</label>
+    </td>
+    <td>
+      <input id="cpfInput" [(ngModel)]="aluno.cpf">
+    </td>
+    <td *ngIf="cpfDuplicado">
+      Já existe um aluno com esse CPF
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label for="emailInput">e-mail</label>
+    </td>
+    <td>
+      <input id="emailInput" [(ngModel)]="aluno.email">
+    </td>
+  </tr>
+</table>
+
+<table *ngIf="alunos && alunos.length > 0">
+  <tr>
+    <th>Nome</th>
+    <th>CPF</th>
+    <th>e-mail</th>
+  </tr>
+  <tr *ngFor="let a of alunos" class="alunoRow">
+    <td class="nomeValue">{{a.nome}}</td>
+    <td class="cpfValue">{{a.cpf}}</td>
+    <td class="emailValue">{{a.email}}</td>
+  </tr>
+</table>
