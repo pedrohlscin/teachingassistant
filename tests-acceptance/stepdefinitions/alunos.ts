@@ -35,7 +35,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     Then(/^I can see "([^\"]*)" with CPF "(\d*)" in the students list$/, async (name, cpf) => {
         var allalunos : ElementArrayFinder = element.all(by.name('alunolist'));
         await allalunos;
-        var samenamecpf = allalunos.filter(elem => sameCPF(elem,cpf) && sameName(elem,name));
+        var samenamecpf = allalunos.filter(elem => pAND(sameCPF(elem,cpf), sameName(elem,name)));
         await samenamecpf;
         await samenamecpf.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
