@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>CPF</th>
+    <th>e-mail</th>
+  </tr>
+  <ng-container *ngFor="let aluno of alunos">
+    <tr *ngIf="aluno.discrepancias && aluno.discrepancias.length > 0" class="alunoRow">
+      <td class="nomeValue">{{aluno.nome}}</td>
+      <td class="cpfValue">{{aluno.cpf}}</td>
+      <td class="emailValue">{{aluno.email}}</td>
+      <td class="meta" *ngFor="let discrepancia of aluno.discrepancias">
+        <label>{{discrepancia}}</label>
+      </td>
+    </tr>
+  </ng-container>
+</table>
